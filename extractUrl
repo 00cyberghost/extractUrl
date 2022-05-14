@@ -1,0 +1,50 @@
+//this function when called extracts the text value of the next forward slash (/)
+//php
+//returns false when no match for the parameter passed to the function is found
+function extractUrl($value){
+
+    $stoppage = '/';
+
+    $str = $_SERVER['REQUEST_URI'];
+
+    $length = strlen($value) + 1;
+
+    $pos = stripos($str, $value);
+
+
+
+    if($pos !== false){
+
+        $result = substr($str,$pos + $length);
+
+        $pos2 = stripos($result,$stoppage);
+
+        if($pos2 !== false){
+
+            return substr($result,0,$pos2);
+        
+        }else{
+
+            return $result;
+        }
+
+
+    
+    }else{
+
+        return false;
+    }   
+   
+}
+
+//how to use
+
+//https://mywebsite.com/posts/longcomment/id/123
+//$result = extractUrl('id');
+//echo $result
+// 123
+
+
+
+//echo extractUrl('posts')
+//longcomment
